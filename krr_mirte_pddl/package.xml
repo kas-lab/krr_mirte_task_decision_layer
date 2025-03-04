@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+
+  <name>krr_mirte_pddl</name>
+  <version>0.0.0</version>
+  <description>PDDL formulations for the Mirte robot in the context of the KRR course</description>
+
+  <maintainer email="g.rezendesilva@tudelft.nl">Gustavo Rezende</maintainer>
+  <author email="g.rezendesilva@tudelft.nl">Gustavo Rezende</author>
+
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>rclcpp_lifecycle</depend>
+  <depend>std_msgs</depend>
+  <depend>nav2_msgs</depend>
+
+  <build_depend>plansys2_executor</build_depend>
+  <build_depend>plansys2_planner</build_depend>
+  <build_depend>plansys2_domain_expert</build_depend>
+  <build_depend>plansys2_problem_expert</build_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+
+</package>
