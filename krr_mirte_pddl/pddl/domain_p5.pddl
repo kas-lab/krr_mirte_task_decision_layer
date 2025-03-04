@@ -28,10 +28,6 @@
     :duration ( = ?duration 5)
     :condition (and
         (at start (robot_at ?wp1))
-        
-        ; (at start (connected ?wp1 ?wp2))
-        ; (at end (connected ?wp1 ?wp2))
-        ; (over all (connected ?wp1 ?wp2))
     )
     :effect (and
         (at start (not(robot_at ?wp1)))
@@ -50,7 +46,6 @@
         (over all (robot_at ?wp))
       
         (at start (object_at ?i ?wp))
-        ; (at end (object_at ?i ?wp))
         (over all (object_at ?i ?wp))
     )
     :effect (and
@@ -73,7 +68,6 @@
         
         (at start (robot_holds ?i))
         (over all (robot_holds ?i))
-        ; (at end (object_at ?i ?wp))
     )
     :effect (and
         (at end (not (robot_holds ?i)))

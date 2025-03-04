@@ -18,10 +18,9 @@
   )
 
   (:goal
-      (robot_at wp_spoon_dirty)
-    ; (and
-    ;     (object_at obj_1_spoon_clean wp_tableware)
-    ;     (object_at obj_2_spoon_dirty wp_dishwasher)
-    ; )
+    (and
+        (object_at obj_1_spoon_clean wp_tableware)
+        (object_at obj_2_spoon_dirty wp_dishwasher)
+    )
   )
 )
