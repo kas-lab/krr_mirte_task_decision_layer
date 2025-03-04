@@ -22,6 +22,7 @@
   <build_depend>plansys2_planner</build_depend>
   <build_depend>plansys2_domain_expert</build_depend>
   <build_depend>plansys2_problem_expert</build_depend>
+  <build_depend>krr_mirte_skills_msgs</build_depend>
 
   <export>
     <build_type>ament_cmake</build_type>

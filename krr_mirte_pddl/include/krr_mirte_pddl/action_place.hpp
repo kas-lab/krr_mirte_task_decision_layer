@@ -17,23 +17,23 @@
 #include <rclcpp/rclcpp.hpp>
 
 #include "plansys2_executor/ActionExecutorClient.hpp"
-#include "krr_mirte_skills_msgs/srv/pick_object.hpp"
+#include "krr_mirte_skills_msgs/srv/place_object.hpp"
 
 namespace krr_mirte_pddl
 {
 
-class Pick : public plansys2::ActionExecutorClient
+class Place : public plansys2::ActionExecutorClient
 {
 public:
-  Pick(const std::string & node_name,
+  Place(const std::string & node_name,
     const std::chrono::nanoseconds & rate);
 
-  virtual ~Pick();
+  virtual ~Place();
 
 private:
-  rclcpp::CallbackGroup::SharedPtr callback_group_pick_client_;
+  rclcpp::CallbackGroup::SharedPtr callback_group_place_client_;
 
-  rclcpp::Client<krr_mirte_skills_msgs::srv::PickObject>::SharedPtr pick_cli_;
+  rclcpp::Client<krr_mirte_skills_msgs::srv::PlaceObject>::SharedPtr place_cli_;
 
   rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
   on_configure(const rclcpp_lifecycle::State & previous_state);

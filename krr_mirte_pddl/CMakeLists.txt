@@ -11,6 +11,7 @@ find_package(rclcpp_lifecycle REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(nav2_msgs REQUIRED)
 find_package(plansys2_executor REQUIRED)
+find_package(krr_mirte_skills_msgs REQUIRED)
 
 set(dependencies
   ament_cmake
@@ -18,6 +19,7 @@ set(dependencies
   rclcpp
   plansys2_executor
   geometry_msgs
+  krr_mirte_skills_msgs
 )
 
 set(TARGET_NAME krr_mirte_pddl)
@@ -47,9 +49,35 @@ ament_target_dependencies(action_move
   ${dependencies}
 )
 
+add_executable(action_pick src/action_pick.cpp)
+
+target_include_directories(action_pick PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
+target_compile_features(action_pick PUBLIC c_std_99 cxx_std_17)
+
+ament_target_dependencies(action_pick
+  ${dependencies}
+)
+
+add_executable(action_place src/action_place.cpp)
+
+target_include_directories(action_place PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
+target_compile_features(action_place PUBLIC c_std_99 cxx_std_17)
+
+ament_target_dependencies(action_place
+  ${dependencies}
+)
+
 install(TARGETS 
   ${TARGET_NAME}
   action_move
+  action_pick
+  action_place
   DESTINATION lib/${PROJECT_NAME}
 )
 

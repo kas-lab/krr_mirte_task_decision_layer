@@ -26,6 +26,8 @@ from launch_ros.actions import Node
 def generate_launch_description():
     krr_mirte_pddl_path = get_package_share_directory('krr_mirte_pddl')
     plansys_path = get_package_share_directory('plansys2_bringup')
+    
+    plansys2_params_file = os.path.join(krr_mirte_pddl_path, 'config', 'plansys2_params.yaml')
     plansys2_bringup = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(os.path.join(
                 plansys_path,
@@ -36,8 +38,8 @@ def generate_launch_description():
                     krr_mirte_pddl_path + '/pddl/domain_p5.pddl',
                 'problem_file':
                     krr_mirte_pddl_path + '/pddl/problem_p5.pddl',
-                # 'params_file':
-                #     krr_mirte_pddl_path + '/config/plansys2_params.yaml',
+                'params_file':
+                    plansys2_params_file,
             }.items()
         )
 
@@ -45,7 +47,6 @@ def generate_launch_description():
     krr_mirte_pddl_node = Node(
         package='krr_mirte_pddl',
         executable='krr_mirte_pddl',
-        # parameters=[waypoints_file]
     )
 
     pddl_move_action_node = Node(
@@ -53,9 +54,23 @@ def generate_launch_description():
         executable='action_move',
         parameters=[waypoints_file, {'action_name': 'move'}]
     )
+    
+    pddl_pick_action_node = Node(
+        package='krr_mirte_pddl',
+        executable='action_pick',
+        parameters=[waypoints_file, {'action_name': 'pick'}]
+    )
+    
+    pddl_place_action_node = Node(
+        package='krr_mirte_pddl',
+        executable='action_place',
+        parameters=[waypoints_file, {'action_name': 'place'}]
+    )
 
     return LaunchDescription([
         plansys2_bringup,
         krr_mirte_pddl_node,
         pddl_move_action_node,
+        pddl_pick_action_node,
+        pddl_place_action_node
     ])
