@@ -73,11 +73,24 @@ ament_target_dependencies(action_place
   ${dependencies}
 )
 
+add_executable(action_dishwasher src/action_dishwasher.cpp)
+
+target_include_directories(action_dishwasher PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>
+)
+target_compile_features(action_dishwasher PUBLIC c_std_99 cxx_std_17)
+
+ament_target_dependencies(action_dishwasher
+  ${dependencies}
+)
+
 install(TARGETS 
   ${TARGET_NAME}
   action_move
   action_pick
   action_place
+  action_dishwasher
   DESTINATION lib/${PROJECT_NAME}
 )
 
