@@ -47,6 +47,7 @@ def generate_launch_description():
     krr_mirte_pddl_node = Node(
         package='krr_mirte_pddl',
         executable='krr_mirte_pddl',
+        parameters=[plansys2_params_file]
     )
 
     pddl_move_action_node = Node(
