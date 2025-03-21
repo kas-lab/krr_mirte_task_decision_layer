@@ -22,6 +22,9 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
+from launch_xml.launch_description_sources import XMLLaunchDescriptionSource
+from launch_ros.substitutions import FindPackageShare
+from launch.substitutions import PathJoinSubstitution
 
 def generate_launch_description():
     krr_mirte_pddl_path = get_package_share_directory('krr_mirte_pddl')
@@ -68,10 +71,22 @@ def generate_launch_description():
         parameters=[waypoints_file, {'action_name': 'place'}]
     )
 
+    mirte_skills_launch = IncludeLaunchDescription(
+        XMLLaunchDescriptionSource([
+            PathJoinSubstitution([
+                FindPackageShare('krr_mirte_skills'),
+                'launch',
+                'mirte_skills.launch.xml'
+            ])
+        ])
+    )
+
     return LaunchDescription([
         plansys2_bringup,
         krr_mirte_pddl_node,
         pddl_move_action_node,
         pddl_pick_action_node,
-        pddl_place_action_node
+        pddl_place_action_node,
+        mirte_skills_launch
+
     ])
